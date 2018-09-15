@@ -1,0 +1,7 @@
+{
+  "name": "gclpedidos",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
