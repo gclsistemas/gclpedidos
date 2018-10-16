@@ -11,8 +11,11 @@
   <!--<ion-searchbar (ionInput)="findProductos($event)" placeholder="Buscar productos..."></ion-searchbar>-->
   <form (ngSubmit)="savePedido()">
     <ion-item no-padding>
+      <ion-searchbar (ionInput)="findClientes($event)" placeholder="Buscar cliente/s..."></ion-searchbar>
+    </ion-item>
+    <ion-item no-padding>
       <ion-select name="cliente_id" [(ngModel)]="pedido.cliente_id" placeholder="Seleccione cliente.">
-        <ion-option *ngFor="let cliente of datos.clientes" value="{{cliente.id}}">{{ cliente.apellido }} {{ cliente.nombre }}</ion-option>
+        <ion-option *ngFor="let cliente of clientes" value="{{cliente.id}}">{{ cliente.apellido }} {{ cliente.nombre }}</ion-option>
       </ion-select>
     </ion-item>
     <ion-item no-padding>

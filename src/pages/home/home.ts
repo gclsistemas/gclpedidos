@@ -15,6 +15,7 @@ import { WebserviceProvider } from '../../providers/webservice/webservice';
 export class HomePage {
 
   loading: Loading;
+  clientes: any[] = [];
   datos: any = [];
   productos: any[] = [];
   pedido = {
@@ -78,6 +79,21 @@ export class HomePage {
     return false;
   }
 
+  findClientes(ev: any) {
+    // Set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // If the value is an empty string don't filter the items
+    if (val && val.trim() !== '') {
+      this.clientes = this.datos.clientes.filter((cliente: any) => {
+        return (cliente.apellido.toLowerCase().indexOf(val.toLowerCase()) > -1 || cliente.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    } else {
+      // Reset items back to all of the items
+      this.clientes = this.datos.clientes;
+    }
+  }
+
   findProductos(ev: any) {
     // Reset items back to all of the items
     // this.productos = this.datos.productos;
@@ -94,15 +110,16 @@ export class HomePage {
     } else {
       // Reset items back to all of the items
       this.productos = this.datos.productos;
-      for(let i = 0; i < this.productos.length; i++) {
-        this.productos[i].cantidad = null;
-      }
-      if (this.pedido.productos.length) {
-        for(let idx = 0; idx < this.pedido.productos.length; idx++) {
-          for(let i = 0; i < this.productos.length; i++) {
-            if (this.pedido.productos[idx].id === this.productos[i].id && this.pedido.productos[idx].presentacion_id === this.productos[i].presentacion_id) {
-              this.productos[i].cantidad = this.pedido.productos[idx].cantidad;
-            }
+    }
+
+    for(let i = 0; i < this.productos.length; i++) {
+      this.productos[i].cantidad = null;
+    }
+    if (this.pedido.productos.length) {
+      for(let idx = 0; idx < this.pedido.productos.length; idx++) {
+        for(let i = 0; i < this.productos.length; i++) {
+          if (this.pedido.productos[idx].articulo_id === this.productos[i].id && this.pedido.productos[idx].presentacion_id === this.productos[i].presentacion_id) {
+            this.productos[i].cantidad = this.pedido.productos[idx].cantidad;
           }
         }
       }
@@ -120,6 +137,7 @@ export class HomePage {
           this.helper.presentToast(res.message);
         } else {
           this.datos = res;
+          this.clientes = res.clientes;
           this.productos = res.productos;
           this.pedido.user_id = this.singleton.user.id;
         }
