@@ -23,10 +23,8 @@ export class HomePage {
     canal: 5,
     cliente_id: 0,
     productos: [],
-    user_id: 0,
-    detalle: ''
+    user_id: 0
   };
-  //cantidad = 1;
 
   constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public navCtrl: NavController, public singleton: SingletonProvider, public webservice: WebserviceProvider) {
 
@@ -38,6 +36,8 @@ export class HomePage {
    * @param event
    */
   addProductoToPedido(idx, event) {
+    this.datos.productos[idx].seleccionado = event.checked;
+    this.productos[idx].seleccionado = event.checked;
     if (event.checked) {
       let producto = {
         articulo_id: this.productos[idx].id,
@@ -52,11 +52,10 @@ export class HomePage {
         precio_id: this.productos[idx].precio_id,
         precio: this.productos[idx].precio,
       };
-      // this.pedido.productos[this.pedido.productos.length] = producto;
       this.pedido.productos.push(producto);
-      // this.helper.presentToast(this.pedido.productos[this.pedido.productos.length - 1].producto);
-      // alert(JSON.stringify(this.pedido.productos));
+      //this.datos.productos[idx].cantidad = producto.cantidad;
     } else {
+      this.datos.productos[idx].cantidad = null;
       for (let i = 0; i < this.pedido.productos.length; i++) {
         if (this.pedido.productos[i].articulo_id == this.datos.productos[idx].id && this.pedido.productos[i].presentacion_id == this.datos.productos[idx].presentacion_id) {
           this.pedido.productos.splice(i,1);
@@ -65,10 +64,9 @@ export class HomePage {
       }
       // alert(JSON.stringify(this.pedido.productos));
     }
-    //this.cantidad = 1;
   }
 
-  checkProductoSeleccionado(producto_id, presentacion_id) {
+  /*checkProductoSeleccionado(producto_id, presentacion_id) {
     if (this.pedido.productos.length) {
       for(let idx = 0; idx < this.pedido.productos.length; idx++) {
         if (this.pedido.productos[idx].id === producto_id && this.pedido.productos[idx].presentacion_id === presentacion_id) {
@@ -77,7 +75,7 @@ export class HomePage {
       }
     }
     return false;
-  }
+  }*/
 
   findClientes(ev: any) {
     // Set val to the value of the searchbar
@@ -112,7 +110,7 @@ export class HomePage {
       this.productos = this.datos.productos;
     }
 
-    for(let i = 0; i < this.productos.length; i++) {
+    /*for(let i = 0; i < this.productos.length; i++) {
       this.productos[i].cantidad = null;
     }
     if (this.pedido.productos.length) {
@@ -123,7 +121,7 @@ export class HomePage {
           }
         }
       }
-    }
+    }*/
   }
 
   ionViewDidLoad() {
@@ -137,8 +135,12 @@ export class HomePage {
           this.helper.presentToast(res.message);
         } else {
           this.datos = res;
-          this.clientes = res.clientes;
-          this.productos = res.productos;
+          for (let i = 0; i < this.datos.productos.length; i++) {
+            this.datos.productos[i].cantidad = null;
+            this.datos.productos[i].seleccionado = false;
+          }
+          this.clientes = this.datos.clientes;
+          this.productos = this.datos.productos;
           this.pedido.user_id = this.singleton.user.id;
         }
       })
@@ -151,20 +153,16 @@ export class HomePage {
 
   savePedido() {
     this.showLoading();
-    let obj = this.pedido;
-    obj.user_id = this.singleton.user.id;
-    obj.detalle = JSON.stringify(this.pedido.productos);
-    delete obj.productos;
-    this.webservice.get('/pedido/create', this.pedido)
+    this.pedido.user_id = this.singleton.user.id;
+    this.webservice.post('/pedido/create', this.pedido)
       .then((res: any) => {
-        console.log(res);
+        // console.log('GCL - Imprimo objeto res del savePedido');
+        // console.log(res);
         if (res.message) {
-          console.log(res.message);
+          // console.log(res.message);
           this.helper.presentToast(res.message);
-          /*this.pedido.fecha = moment().format('YYYY-MM-DD HH:mm:ss');
-          this.pedido.cliente_id = 0;
-          this.pedido.productos = [];*/
-          this.navCtrl.push('home-page');
+          // TODO: Cambiar this.navCtrl.setRoot('home-page'); por this.navCtrl.setRoot('list-page', {'cliente_id': this.pedido.cliente_id});
+          this.navCtrl.setRoot('home-page');
         }
       })
       .catch(err => {

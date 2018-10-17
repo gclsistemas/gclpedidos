@@ -26,7 +26,8 @@
         <!--<ion-item-sliding #slidingItem *ngFor="let producto of datos.productos; let i = index">-->
           <ion-item no-padding *ngFor="let producto of productos; let i = index">
             <!--<ion-checkbox (ionChange)="addProductoToPedido(i, $event)" item-start></ion-checkbox>-->
-            <ion-toggle [checked]="checkProductoSeleccionado(producto.id, producto.presentacion_id)" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>
+            <!--<ion-toggle [checked]="checkProductoSeleccionado(producto.id, producto.presentacion_id)" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>-->
+            <ion-toggle [checked]="producto.seleccionado" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>
             <ion-label item-content text-wrap>
               <p>COD-{{producto.id}}-{{producto.presentacion_id}} {{producto.nombre}} marca {{producto.marca}}</p>
               <p>${{producto.precio}}</p>
