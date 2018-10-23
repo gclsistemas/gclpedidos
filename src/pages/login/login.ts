@@ -37,6 +37,8 @@ export class LoginPage {
         // alert(JSON.stringify(res));
         if (res.user) {
           this.singleton.user = res.user;
+          localStorage.setItem('user', this.loginInfo.email);
+          localStorage.setItem('pwd', this.loginInfo.password);
           this.navCtrl.setRoot('home-page');
         } else {
           console.log(res.message);
@@ -52,6 +54,11 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+    if (localStorage.getItem('user') && localStorage.getItem('pwd')) {
+      this.loginInfo.email = localStorage.getItem('user');
+      this.loginInfo.password = localStorage.getItem('pwd');
+      this.login();
+    }
   }
 
   showLoading() {

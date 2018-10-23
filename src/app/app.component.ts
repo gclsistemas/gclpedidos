@@ -41,6 +41,8 @@ export class MyApp {
   }
 
   logout() {
-    this.platform.exitApp();
+    // this.platform.exitApp();
+    localStorage.clear();
+    this.nav.setRoot('login-page');
   }
 }

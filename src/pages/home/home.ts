@@ -110,18 +110,13 @@ export class HomePage {
       this.productos = this.datos.productos;
     }
 
-    /*for(let i = 0; i < this.productos.length; i++) {
-      this.productos[i].cantidad = null;
-    }
-    if (this.pedido.productos.length) {
-      for(let idx = 0; idx < this.pedido.productos.length; idx++) {
-        for(let i = 0; i < this.productos.length; i++) {
-          if (this.pedido.productos[idx].articulo_id === this.productos[i].id && this.pedido.productos[idx].presentacion_id === this.productos[i].presentacion_id) {
-            this.productos[i].cantidad = this.pedido.productos[idx].cantidad;
-          }
+    for(let idx = 0; idx < this.pedido.productos.length; idx++) {
+      for(let i = 0; i < this.productos.length; i++) {
+        if (this.pedido.productos[idx].articulo_id === this.productos[i].id && this.pedido.productos[idx].presentacion_id === this.productos[i].presentacion_id) {
+          this.productos[i].cantidad = this.pedido.productos[idx].cantidad;
         }
       }
-    }*/
+    }
   }
 
   ionViewDidLoad() {
