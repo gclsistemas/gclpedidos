@@ -17,6 +17,9 @@ export class HomePage {
   loading: Loading;
   clientes: any[] = [];
   datos: any = [];
+  hiddenLstPedido = true;
+  hiddenLstProductos = false;
+  importeTotal = 0;
   productos: any[] = [];
   pedido = {
     fecha: moment().format('YYYY-MM-DD HH:mm:ss'),
@@ -43,11 +46,10 @@ export class HomePage {
         articulo_id: this.productos[idx].id,
         presentacion_id: this.productos[idx].presentacion_id,
         /** producto
-         * Codigo, nombre y presentación del producto.
-         * Codigo: COD-articulo_id-presentacion_articulo_id
-         * Ej: COD-1-1 Caña de mosca #5 x unidad
+         * Formato: nombre, presentación y marca.
+         * Ej: Caña de mosca #5 x unidad marca Orvis
          */
-        producto: 'COD-' + this.productos[idx].id + '-' + this.productos[idx].presentacion_id + ' ' + this.productos[idx].nombre,
+        producto: this.productos[idx].nombre + ' x ' + this.productos[idx].presentacion + (this.productos[idx].marca ? ', marca ' + this.productos[idx].marca : ''),
         cantidad: (parseInt(this.productos[idx].cantidad) || 1),
         precio_id: this.productos[idx].precio_id,
         precio: this.productos[idx].precio,
@@ -66,16 +68,14 @@ export class HomePage {
     }
   }
 
-  /*checkProductoSeleccionado(producto_id, presentacion_id) {
-    if (this.pedido.productos.length) {
-      for(let idx = 0; idx < this.pedido.productos.length; idx++) {
-        if (this.pedido.productos[idx].id === producto_id && this.pedido.productos[idx].presentacion_id === presentacion_id) {
-          return true;
-        }
-      }
-    }
-    return false;
-  }*/
+  /**
+   *
+   * @param idx Indice del elemento en this.pedido.productos
+   */
+  delProductoPedido(idx) {
+    this.pedido.productos.splice(idx,1);
+    this.sumoImportes();
+  }
 
   findClientes(ev: any) {
     // Set val to the value of the searchbar
@@ -94,20 +94,17 @@ export class HomePage {
 
   findProductos(ev: any) {
     // Reset items back to all of the items
-    // this.productos = this.datos.productos;
+    this.productos = this.datos.productos;
 
     // set val to the value of the searchbar
     let val = ev.target.value;
 
     // if the value is an empty string don't filter the items
     if (val && val.trim() !== '') {
-      this.productos = this.datos.productos.filter((producto: any) => {
+      this.productos = this.productos.filter((producto: any) => {
         return ((producto.marca && producto.marca.toLowerCase().indexOf(val.toLowerCase()) > -1) || producto.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1 ||
           producto.presentacion.toLowerCase().indexOf(val.toLowerCase()) > -1);
       });
-    } else {
-      // Reset items back to all of the items
-      this.productos = this.datos.productos;
     }
 
     for(let idx = 0; idx < this.pedido.productos.length; idx++) {
@@ -147,6 +144,16 @@ export class HomePage {
   }
 
   savePedido() {
+    if (this.pedido.cliente_id === 0) {
+      this.helper.presentToast('Seleccione el cliente');
+      return false;
+    }
+    if (this.pedido.productos.length === 0) {
+      this.helper.presentToast('Seleccione productos del cliente');
+      this.hiddenLstPedido = true;
+      this.hiddenLstProductos = false;
+      return false;
+    }
     this.showLoading();
     this.pedido.user_id = this.singleton.user.id;
     this.webservice.post('/pedido/create', this.pedido)
@@ -173,6 +180,19 @@ export class HomePage {
       dismissOnPageChange: true
     });
     this.loading.present();
+  }
+
+  sumoImportes() {
+    this.importeTotal = 0;
+    for (let i = 0; i < this.pedido.productos.length; i++) {
+      this.importeTotal += (this.pedido.productos[i].cantidad * this.pedido.productos[i].precio);
+    }
+  }
+
+  verPedido(event) {
+    this.hiddenLstProductos = event.checked;
+    this.sumoImportes();
+    this.hiddenLstPedido = !event.checked;
   }
 
 }
