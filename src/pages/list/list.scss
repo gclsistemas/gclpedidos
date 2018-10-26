@@ -1,3 +1,91 @@
 page-list {
+  .item-checkbox {
+    padding-left: 0;
+  }
 
+  .checkbox {
+    right: auto;
+  }
+
+  .input-label {
+    padding-left: 60px;
+  }
+
+  .viaje {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    color: red;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: right;
+  }
+  .asistente {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: right;
+  }
+  .name {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: right;
+  }
+  .detail {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    color: #07b5fd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: right;
+  }
+  .email {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 4px;
+    color: #07b5fd;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-content: right;
+  }
+  .color_item_green {
+    background-color: rgb(229, 255, 208);
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+
+  }
+  .color_item_red {
+    background-color: red;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+  }
+  .color_item_gray {
+    background-color: lightgray;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+  }
+  .color_item_transparent {
+    background-color: transparent;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+  }
 }

@@ -10,6 +10,8 @@ import { HelperProvider } from '../providers/helper/helper';
 import {HttpClientModule} from '@angular/common/http';
 import { WebserviceProvider } from '../providers/webservice/webservice';
 import { SingletonProvider } from '../providers/singleton/singleton';
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { SingletonProvider } from '../providers/singleton/singleton';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HelperProvider,
     WebserviceProvider,
-    SingletonProvider
+    SingletonProvider,
+    File,
+    FileOpener
   ]
 })
 export class AppModule {}

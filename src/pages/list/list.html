@@ -1,23 +1,47 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle>
+    <button ion-button menuToggle color="gray">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Consulta de pedidos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="gray" (click)="presentActionSheet()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
+  <ion-searchbar
+	  [(ngModel)]="myInput"
+	  [showCancelButton]="true"
+	  (ionInput)="onInput($event)"
+	  (ionClear)="onCancel($event)"
+	  (ionCancel)="onCancel($event)"
+	  placeholder="Buscar...">
+	</ion-searchbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-item [hidden]="splash"><img src="assets/imgs/hand-right-to-left.png"></ion-item>
+    <ion-item-sliding #slidingItem *ngFor="let pedido of pedidos; let i = index">
+      <ion-item>
+        <ion-label class="{{pedido.cancelado ? 'color_item_red' : (pedido.confirmado ? 'color_item_gray' : (pedido.enviado ? 'color_item_green' : 'color_item_transparent'))}}">
+          <p>Fecha: {{pedido.fecha}}</p>
+          <p>Cliente: {{pedido.cliente}}</p>
+          <p>Cantidad: {{pedido.cantidad}}<span item-end><b>${{pedido.importeTotal}}</b></span></p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="primary" [hidden]="pedido.cancelado || pedido.confirmado || pedido.enviado" (click)="editItem(slidingItem, i)">
+          <ion-icon name="create"></ion-icon>Editar
+        </button>
+        <button ion-button color="danger" [hidden]="pedido.cancelado || pedido.confirmado || pedido.enviado" (click)="confirmDelete(slidingItem, i)">
+          <ion-icon name="trash"></ion-icon>Cancelar
+        </button>
+        <button ion-button color="secondary" [hidden]="pedido.cancelado" (click)="toPDF(slidingItem, i)">
+          <ion-icon name="print"></ion-icon>PDF
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
 </ion-content>

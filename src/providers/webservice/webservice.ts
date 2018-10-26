@@ -66,6 +66,24 @@ export class WebserviceProvider {
 
   /**
    *
+   * @param {number} user_id Id de usuario logueado.
+   * @returns {Promise<any>}
+   */
+  download_pedidos(user_id: number) {
+    console.log('WebserviceProvider - download pedidos');
+    return new Promise(resolve => {
+      this.http.get(this.urlWeb + '/download/pedidos/' + user_id, {headers: this.httpHeaders}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });
+    });
+  }
+
+  /**
+   *
    * @param {string} url Sin http/htpps. Ej: /pedidos/lista.
    * @param {any} obj
    * @returns {Observable<Object>}
