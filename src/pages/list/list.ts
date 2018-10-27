@@ -41,7 +41,6 @@ export class ListPage {
   pedidos_todos: any[] = [];
   onDialog: boolean = false;
   loading: Loading;
-  // archivo: string = "";
   myInput: string;
 
   letterObj = {
@@ -109,17 +108,15 @@ export class ListPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
   }
 
-  /*presentFiles(slidingItem: ItemSliding, index) {
-    var solicitudId = this.pedidos[index].id;
-
-    let adjuntosModal = this.modalCtrl.create('adjuntos-page', { solicitudId: solicitudId });
+  presentFiles(slidingItem: ItemSliding, index) {
+    let id = this.pedidos[index].id;
+    let adjuntosModal = this.modalCtrl.create('adjuntos-page', { pedido_id: id });
     //this.navCtrl.setRoot('home-page', { solicitudId: this.tomados[index].id });
-
     adjuntosModal.onDidDismiss(data => {
       console.log(data);
     });
     adjuntosModal.present();
-  }*/
+  }
 
   downloadPdf(index, openfile) {
     let pdfName = "pedido";
@@ -238,13 +235,13 @@ export class ListPage {
     this.downloadPdf(index, true);
   }
 
-  /*deleteSelected() {
+  deleteSelected() {
     if (confirm("Elimina pedidos seleccionados?")) {
       this.pedidos = this.pedidos.filter((item: any) => {
         return (item.seleccionado == false);
       });
     }
-  }*/
+  }
 
   itemsEMail(index) {
     let texto = '<table style="width:100%;"><tr>';

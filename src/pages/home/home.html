@@ -3,7 +3,10 @@
     <button ion-button menuToggle icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Realizar Pedido</ion-title>
+    <ion-title>
+      <ion-icon name="create"></ion-icon>
+      Realizar Pedido
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -51,9 +54,9 @@
         <ion-toggle [checked]="producto.seleccionado" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>
         <ion-label item-content text-wrap>
           <p><b>(COD-{{producto.id}}-{{producto.presentacion_id}})</b> {{producto.nombre}} x {{producto.presentacion}} marca {{producto.marca}}</p>
-          <p>${{producto.precio}}</p>
+          <p><span float-right>${{producto.precio}}</span></p>
           <ion-item no-padding>
-            <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad"></ion-input>
+            <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad" placeholder="Cantidad"></ion-input>
           </ion-item>
         </ion-label>
       </ion-item>
