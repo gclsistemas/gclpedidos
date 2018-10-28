@@ -1,17 +1,17 @@
 page-list {
-  .item-checkbox {
+  /*.item-checkbox {
     padding-left: 0;
-  }
+  }*/
 
-  .checkbox {
+  /*.checkbox {
     right: auto;
   }
 
   .input-label {
     padding-left: 60px;
-  }
+  }*/
 
-  .viaje {
+  /*.viaje {
     font-size: 17px;
     font-weight: bold;
     margin-bottom: 4px;
@@ -48,6 +48,37 @@ page-list {
     overflow: hidden;
     text-overflow: ellipsis;
     align-content: right;
+  }*/
+  .enviado_green {
+    background-color: rgb(229, 255, 208);
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+  }
+  .cancelado_red {
+    background-color: red;
+    border: 1px;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+  }
+  .cancelado_red > p {
+    color: white;
+  }
+  .pagado_gray, .embalada_gray  {
+    background-color: lightgray;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
+  }
+  .sin_procesar {
+    background-color: transparent;
+    margin: 5px;
+    border-radius: 15px;
+    padding: 5px;
+    border: 1px;
   }
   .email {
     font-size: 16px;
@@ -58,34 +89,5 @@ page-list {
     overflow: hidden;
     text-overflow: ellipsis;
     align-content: right;
-  }
-  .color_item_green {
-    background-color: rgb(229, 255, 208);
-    margin: 5px;
-    border-radius: 15px;
-    padding: 5px;
-    border: 1px;
-
-  }
-  .color_item_red {
-    background-color: red;
-    margin: 5px;
-    border-radius: 15px;
-    padding: 5px;
-    border: 1px;
-  }
-  .color_item_gray {
-    background-color: lightgray;
-    margin: 5px;
-    border-radius: 15px;
-    padding: 5px;
-    border: 1px;
-  }
-  .color_item_transparent {
-    background-color: transparent;
-    margin: 5px;
-    border-radius: 15px;
-    padding: 5px;
-    border: 1px;
   }
 }

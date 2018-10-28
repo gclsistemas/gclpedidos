@@ -6,6 +6,8 @@
  *
  * How to Create PDF Files with Ionic using PDFMake [v3]
  * https://ionicacademy.com/create-pdf-files-ionic-pdfmake/
+ * http://pdfmake.org
+ * https://www.javascripting.com/view/pdfmake
  */
 
 import { Component, ViewChild } from '@angular/core';
@@ -43,11 +45,11 @@ export class ListPage {
   loading: Loading;
   myInput: string;
 
-  letterObj = {
+  /*letterObj = {
     to: '',
     from: '',
     text: ''
-  };
+  };*/
   pdfObj = null;
 
   splash = false;
@@ -62,11 +64,10 @@ export class ListPage {
   onInput(event) {
     // set val to the value of the searchbar
     let val = event.target.value;
-
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.pedidos = this.pedidos_todos.filter((item) => {
-        return (item.usuario.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.id.toString().indexOf(val.toLowerCase()) > -1);
+        return (item.cliente.toLowerCase().indexOf(val.toLowerCase()) > -1 || item.id.toString().indexOf(val.toLowerCase()) > -1);
       })
     }
     else {
@@ -78,15 +79,21 @@ export class ListPage {
     this.pedidos = this.pedidos_todos;
   }
 
-  createPdf(index) {
+  private createPdf(index) {
     let docDefinition = {
       content: [
+        // { image: 'assets/imgs/logo.png' },
         { text: 'DATOS DEL PEDIDO', style: 'header' },
         { text: 'Fecha de pedido: ' + moment(this.pedidos[index].fecha, 'YYYY-MM-DD').format('DD/MM/YYYY'), style: 'subheader' },
         { text: 'Nro: ' + this.pedidos[index].id, style: 'subheader' },
         { text: 'Cliente: ' + this.pedidos[index].cliente, style: 'subheader' },
         { text: 'Cantidad: ' + this.pedidos[index].cantidad, style: 'subheader' },
         { text: 'Importe Total: ' + this.pedidos[index].importeTotal, style: 'subheader' },
+        { text: (this.pedidos[index].cancelado ? 'Cancelado el ' + moment(this.pedidos[index].fechaCancelado).format('DD/MM/YYYY') :
+            (this.pedidos[index].pagado ? 'Pagado: ' + moment(this.pedidos[index].fechaPago).format('DD/MM/YYYY') :
+              (this.pedidos[index].embalada ? 'Embalada el ' + moment(this.pedidos[index].fechaEmbalada).format('DD/MM/YYYY') :
+                (this.pedidos[index].enviado ? 'Enviado el ' + moment(this.pedidos[index].fechaEnviado).format('DD/MM/YYYY') :
+    'Sin procesar')))), style: 'subheader' },
       ],
       styles: {
         header: {
@@ -108,7 +115,7 @@ export class ListPage {
     this.pdfObj = pdfMake.createPdf(docDefinition);
   }
 
-  presentFiles(slidingItem: ItemSliding, index) {
+  /*presentFiles(slidingItem: ItemSliding, index) {
     let id = this.pedidos[index].id;
     let adjuntosModal = this.modalCtrl.create('adjuntos-page', { pedido_id: id });
     //this.navCtrl.setRoot('home-page', { solicitudId: this.tomados[index].id });
@@ -116,9 +123,9 @@ export class ListPage {
       console.log(data);
     });
     adjuntosModal.present();
-  }
+  }*/
 
-  downloadPdf(index, openfile) {
+  private downloadPdf(index, openfile) {
     let pdfName = "pedido";
     if (this.plt.is('cordova')) {
       this.pdfObj.getBuffer((buffer) => {
@@ -167,7 +174,7 @@ export class ListPage {
     setTimeout(() => this.splash = true, 1000);
   }
 
-  getListado() {
+  private getListado() {
     this.showLoading();
     this.webservice.download_pedidos(this.singleton.user.id)
       .then((res: any) => {
@@ -187,38 +194,20 @@ export class ListPage {
     this.loading.dismiss();
   }
 
-  removeItem(index) {
-    /*let obj = {id:this.pedidos[index].id, estadoId : 4};
-    this.webService.put("/solicitudes/" + this.pedidos[index].id, obj).subscribe(
-      data => {
-        this.helper.presentToast("Solicitud " + this.pedidos[index].id + " cancelada correctamente");
-
-        console.log(data);
-        let obj = {id: this.pedidos[index].id};
-        console.log(obj);
-        this.webService.postPhp('/solicitudes/app_send_mail.php', obj).subscribe(
-          res => {
-            let info = res["_body"];
-            let obj = JSON.parse(info);
-            this.helper.presentToast(obj.message);
-          },
-          err => {
-            alert(JSON.stringify(err));
-            console.log(JSON.stringify(err));
-          }
-        );
-        //lo pasa a cancelado y lo saca del listado
-
-        this.pedidos.splice(index, 1);
-        this.pedidos_todos = this.pedidos;
-        
-        this.loading.dismiss();
+  private removeItem(index) {
+    this.showLoading();
+    let obj = {fechaCancelado : moment().format('YYYY-MM-DD  HH:mm:ss')};
+    this.webservice.put("/pedido/update/" + this.pedidos[index].id, obj)
+      .then(
+        (res: any) => {
+        console.log(res);
+        this.helper.presentToast(res.message);
       },
       err => {
         alert(err);
         console.log(err);
-        this.loading.dismiss();
-      });*/
+      });
+    this.loading.dismiss();
   }
 
   sendToPdf() {
