@@ -3,9 +3,17 @@
     <button ion-button menuToggle icon-only color="gray">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>
+    <!--<ion-title>
       <ion-icon name="list-box"></ion-icon>
       Consulta de pedidos
+    </ion-title>-->
+    <ion-title>
+      <img src="https://gclsistemas.com.ar/img/logo.png" img-logo>
+      <div>Pedidos de clientes</div>
+      <div small>
+        <ion-icon name="list-box"></ion-icon>
+        Consulta de pedidos
+      </div>
     </ion-title>
     <ion-buttons end>
       <button ion-button icon-only color="gray" (click)="presentActionSheet()">
@@ -13,17 +21,25 @@
       </button>
     </ion-buttons>
   </ion-navbar>
-  <ion-searchbar
+  <!--<ion-searchbar
 	  [(ngModel)]="myInput"
 	  [showCancelButton]="true"
 	  (ionInput)="onInput($event)"
 	  (ionClear)="onCancel($event)"
 	  (ionCancel)="onCancel($event)"
 	  placeholder="Buscar...">
-	</ion-searchbar>
+	</ion-searchbar>-->
 </ion-header>
 
 <ion-content no-padding>
+  <ion-searchbar
+    [(ngModel)]="myInput"
+    [showCancelButton]="true"
+    (ionInput)="onInput($event)"
+    (ionClear)="onCancel($event)"
+    (ionCancel)="onCancel($event)"
+    placeholder="Buscar...">
+  </ion-searchbar>
   <ion-item no-padding>
     <ion-list>
       <ion-item [hidden]="splash"><img src="assets/imgs/hand-right-to-left.png"></ion-item>
