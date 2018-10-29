@@ -82,7 +82,7 @@ export class ListPage {
   private createPdf(index) {
     let docDefinition = {
       content: [
-        // { image: 'assets/imgs/logo.png' },
+        // { image: '../../assets/imgs/logo.png' },
         { text: 'DATOS DEL PEDIDO', style: 'header' },
         { text: 'Fecha de pedido: ' + moment(this.pedidos[index].fecha, 'YYYY-MM-DD').format('DD/MM/YYYY'), style: 'subheader' },
         { text: 'Nro: ' + this.pedidos[index].id, style: 'subheader' },
