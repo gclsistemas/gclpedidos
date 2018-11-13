@@ -33,12 +33,18 @@ export class RegisterPage {
   }
 
   ionViewDidLoad() {
+    this.showLoading();
     console.log('ionViewDidLoad RegisterPage');
     this.menuCtrl.enable(false, 'myMenu');
-    this.webservice.get('get/empresas')
+    this.webservice.get('/get/empresas')
       .then((res: any) => {
         this.empresas = res;
+      })
+      .catch(err => {
+        console.log(err);
+        this.helper.presentToast(err);
       });
+    this.loading.dismiss();
   }
 
   register() {

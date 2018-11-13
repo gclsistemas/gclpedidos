@@ -16,6 +16,7 @@
 <ion-content padding>
   <form (ngSubmit)="login()">
     <ion-item no-padding>
+      <ion-label>Empresas</ion-label>
       <ion-select name="empresa_id" [(ngModel)]="registerInfo.empresa_id" placeholder="Seleccione empresa." required>
         <ion-option *ngFor="let empresa of empresas" value="{{empresa.id}}">{{ empresa.razonSocial }}</ion-option>
       </ion-select>
