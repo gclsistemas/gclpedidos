@@ -1,6 +1,5 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-// import { HelperProvider } from '../helper/helper';
 
 /*
   Generated class for the WebserviceProvider provider.
@@ -15,9 +14,10 @@ export class WebserviceProvider {
   private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
+    //'Accept': 'application/json'
   });
 
-  constructor(public http: HttpClient) { //public helper: HelperProvider,
+  constructor(public http: HttpClient) {
     console.log('Hello WebserviceProvider Provider');
   }
 
@@ -138,6 +138,26 @@ export class WebserviceProvider {
   public put(url: string, obj: any) {
     return new Promise(resolve => {
       this.http.put(this.urlWeb + url, obj, {headers: this.httpHeaders}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });
+    });
+  }
+
+  register(obj: any) {
+    console.log('WebserviceProvider - register');
+    return new Promise(resolve => {
+      /*this.http.post(this.urlWeb + '/register', obj, {headers: this.httpHeaders}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });*/
+      this.http.get(this.urlWeb + '/register', {headers: this.httpHeaders, params: obj}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);

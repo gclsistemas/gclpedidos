@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, Loading, NavController } from 'ionic-angular';
+import {IonicPage, Loading, LoadingController, MenuController, NavController, NavParams} from 'ionic-angular';
 import * as moment from 'moment';
 import { HelperProvider } from '../../providers/helper/helper';
 import { SingletonProvider } from '../../providers/singleton/singleton';
@@ -14,6 +14,7 @@ import { WebserviceProvider } from '../../providers/webservice/webservice';
 })
 export class HomePage {
 
+  pageTitle: string = '';
   loading: Loading;
   clientes: any[] = [];
   datos: any = [];
@@ -29,8 +30,8 @@ export class HomePage {
     user_id: 0
   };
 
-  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public navCtrl: NavController, public singleton: SingletonProvider, public webservice: WebserviceProvider) {
-
+  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider,
+              public webservice: WebserviceProvider) {
   }
 
   /**
@@ -119,6 +120,7 @@ export class HomePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomePage');
     this.showLoading();
+    this.pageTitle = this.navParams.get('title');
     this.webservice.download(this.singleton.user.id)
       .then((res: any) => {
         console.log(res);
@@ -141,6 +143,10 @@ export class HomePage {
         this.helper.presentToast(err);
       });
     this.loading.dismiss();
+  }
+
+  ionViewWillEnter () {
+    this.menuCtrl.enable (true, 'myMenu');
   }
 
   savePedido() {

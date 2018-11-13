@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController } from 'ionic-angular';
+import {AlertController, ToastController} from 'ionic-angular';
 
 /*
   Generated class for the HelperProvider provider.

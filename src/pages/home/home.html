@@ -1,52 +1,24 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle icon-only>
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <!--<ion-title>
-      <ion-icon name="create"></ion-icon>
-      Realizar Pedido
-    </ion-title>-->
     <ion-title>
-      <img src="https://gclsistemas.com.ar/img/logo.png" img-logo>
-      <div>Pedidos de clientes</div>
-      <div small>
-        <ion-icon name="create"></ion-icon>
-        Realizar Pedido
-      </div>
+      <img src="../../assets/imgs/logo.png" img-logo/>
+      <ion-label>
+        Pedidos de clientes
+        <div small>{{pageTitle}}...<ion-icon name="create"></ion-icon></div>
+      </ion-label>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <!--<form (ngSubmit)="savePedido()">
-    <ion-item no-padding>
-      <ion-searchbar (ionInput)="findClientes($event)" placeholder="Buscar cliente/s..."></ion-searchbar>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-select name="cliente_id" [(ngModel)]="pedido.cliente_id" placeholder="Seleccione cliente.">
-        <ion-option *ngFor="let cliente of clientes" value="{{cliente.id}}">{{ cliente.apellido }} {{ cliente.nombre }}</ion-option>
-      </ion-select>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-searchbar (ionInput)="findProductos($event)" placeholder="Buscar productos..."></ion-searchbar>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-list>
-          <ion-item no-padding *ngFor="let producto of productos; let i = index">
-            <ion-toggle [checked]="producto.seleccionado" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>
-            <ion-label item-content text-wrap>
-              <p>COD-{{producto.id}}-{{producto.presentacion_id}} {{producto.nombre}} marca {{producto.marca}}</p>
-              <p>${{producto.precio}}</p>
-              <ion-item no-padding>
-                <ion-input type="number" name="cantidad" [(ngModel)]="producto.cantidad"></ion-input>
-              </ion-item>
-            </ion-label>
-          </ion-item>
-      </ion-list>
-    </ion-item>
-    <button ion-button type="submit" block>Guardar</button>
-  </form>-->
+  <!--<h3>Ionic Menu Starter</h3>
+  <p>
+    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
+  </p>
+  <button ion-button secondary menuToggle>Toggle Menu</button>-->
 
   <ion-item no-padding>
     <ion-toggle [checked]="hiddenLstProductos" (ionChange)="verPedido($event)" item-start></ion-toggle>
@@ -81,18 +53,18 @@
       </ion-select>
     </ion-item>
     <ion-item no-padding>
-    <ion-list>
-      <ion-item no-padding *ngFor="let producto of pedido.productos; let i = index">
-        <ion-toggle [checked]="true" (ionChange)="delProductoPedido(i, $event)" item-start></ion-toggle>
-        <ion-label item-content text-wrap>
-          <p><b>(COD-{{producto.articulo_id}}-{{producto.presentacion_id}})</b> {{producto.producto}}</p>
-          <p>${{producto.precio}}</p>
-          <ion-item no-padding>
-            <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad" (ionChange)="sumoImportes()"></ion-input>
-          </ion-item>
-        </ion-label>
-      </ion-item>
-    </ion-list>
+      <ion-list>
+        <ion-item no-padding *ngFor="let producto of pedido.productos; let i = index">
+          <ion-toggle [checked]="true" (ionChange)="delProductoPedido(i, $event)" item-start></ion-toggle>
+          <ion-label item-content text-wrap>
+            <p><b>(COD-{{producto.articulo_id}}-{{producto.presentacion_id}})</b> {{producto.producto}}</p>
+            <p>${{producto.precio}}</p>
+            <ion-item no-padding>
+              <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad" (ionChange)="sumoImportes()"></ion-input>
+            </ion-item>
+          </ion-label>
+        </ion-item>
+      </ion-list>
     </ion-item>
     <ion-item no-padding text-right>
       <b>Importe Total: ${{importeTotal}}</b>

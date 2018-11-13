@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, LoadingController, Loading, NavController, NavParams } from 'ionic-angular';
+import {IonicPage, Loading, LoadingController, MenuController, NavController, NavParams} from 'ionic-angular';
 import { HelperProvider } from '../../providers/helper/helper';
 import { SingletonProvider } from '../../providers/singleton/singleton';
 import { WebserviceProvider } from '../../providers/webservice/webservice';
@@ -26,7 +26,22 @@ export class LoginPage {
     password: ''
   };
 
-  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider, public webservice: WebserviceProvider) {
+  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider,
+              public webservice: WebserviceProvider) {
+  }
+
+  createAccount() {
+    this.navCtrl.setRoot('register-page');
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LoginPage');
+    this.menuCtrl.enable(false, 'myMenu');
+    if (localStorage.getItem('user') && localStorage.getItem('pwd')) {
+      this.loginInfo.email = localStorage.getItem('user');
+      this.loginInfo.password = localStorage.getItem('pwd');
+      this.login();
+    }
   }
 
   login() {
@@ -39,7 +54,7 @@ export class LoginPage {
           this.singleton.user = res.user;
           localStorage.setItem('user', this.loginInfo.email);
           localStorage.setItem('pwd', this.loginInfo.password);
-          this.navCtrl.setRoot('home-page');
+          this.navCtrl.setRoot('home-page', {title: 'Nuevo pedido'});
         } else {
           console.log(res.message);
           this.helper.presentToast(res.message);
@@ -52,14 +67,15 @@ export class LoginPage {
     this.loading.dismiss();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
-    if (localStorage.getItem('user') && localStorage.getItem('pwd')) {
-      this.loginInfo.email = localStorage.getItem('user');
-      this.loginInfo.password = localStorage.getItem('pwd');
-      this.login();
-    }
+  /*onPageDidEnter() {
+    // the left menu should be disabled on the login page
+    this.menu.enable(false, 'myMenu');
   }
+
+  onPageDidLeave() {
+    // enable the left menu when leaving the login page
+    this.menu.enable(true, 'myMenu');
+  }*/
 
   showLoading() {
     this.loading = this.loadingCtrl.create({

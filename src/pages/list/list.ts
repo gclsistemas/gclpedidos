@@ -10,9 +10,15 @@
  * https://www.javascripting.com/view/pdfmake
  */
 
-import { Component, ViewChild } from '@angular/core';
+/*import { Component, ViewChild } from '@angular/core';
 import {
   Nav, IonicPage, NavController, Platform,
+  NavParams, AlertController, ItemSliding, LoadingController, Loading,
+  PopoverController, ActionSheetController, ModalController
+} from 'ionic-angular';*/
+import { Component } from '@angular/core';
+import {
+  IonicPage, NavController, Platform,
   NavParams, AlertController, ItemSliding, LoadingController, Loading,
   PopoverController, ActionSheetController, ModalController
 } from 'ionic-angular';
@@ -38,7 +44,8 @@ import {WebserviceProvider} from '../../providers/webservice/webservice';
   templateUrl: 'list.html',
 })
 export class ListPage {
-  @ViewChild(Nav) nav: Nav;
+  // @ViewChild(Nav) nav: Nav;
+  pageTitle: string = '';
   pedidos: any[] = [];
   pedidos_todos: any[] = [];
   onDialog: boolean = false;
@@ -170,6 +177,7 @@ export class ListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListPage');
+    this.pageTitle = this.navParams.get('title');
     this.getListado();
     setTimeout(() => this.splash = true, 1000);
   }

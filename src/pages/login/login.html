@@ -7,8 +7,8 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      <img src="https://gclsistemas.com.ar/img/logo.png" img-logo>
-      <div>Pedidos de clientes</div>
+      <img src="../../assets/imgs/logo.png" img-logo/>
+      <ion-label text-center>Pedidos de clientes</ion-label>
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -22,5 +22,6 @@
       <ion-input type="password" name="password" placeholder="Contraseña" [(ngModel)]="loginInfo.password" required></ion-input>
     </ion-item>
     <button ion-button type="submit" block>Ingresar</button>
+    <button ion-button class="register-btn" block clear (click)="createAccount()" item-end>Registrese</button>
   </form>
 </ion-content>

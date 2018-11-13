@@ -4,18 +4,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { HelperProvider } from '../providers/helper/helper';
-import {HttpClientModule} from '@angular/common/http';
-import { WebserviceProvider } from '../providers/webservice/webservice';
-import { SingletonProvider } from '../providers/singleton/singleton';
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
+import { HelperProvider } from '../providers/helper/helper';
+import { HttpClientModule } from '@angular/common/http';
+import { SingletonProvider } from '../providers/singleton/singleton';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
+import { WebserviceProvider } from '../providers/webservice/webservice';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
@@ -24,17 +24,17 @@ import { FileOpener } from '@ionic-native/file-opener';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
   ],
   providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    HelperProvider,
-    WebserviceProvider,
-    SingletonProvider,
     File,
-    FileOpener
+    FileOpener,
+    HelperProvider,
+    SplashScreen,
+    StatusBar,
+    SingletonProvider,
+    WebserviceProvider,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {}

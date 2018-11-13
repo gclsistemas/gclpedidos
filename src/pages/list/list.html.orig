@@ -3,7 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>
+      <img src="../../assets/imgs/logo.png" img-logo/>
+      <ion-label>
+        Pedidos de clientes
+        <div small><ion-icon name="list-box"> {{pageTitle}}</ion-icon></div>
+      </ion-label>
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
