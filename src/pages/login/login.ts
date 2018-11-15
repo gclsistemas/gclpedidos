@@ -30,9 +30,9 @@ export class LoginPage {
               public webservice: WebserviceProvider) {
   }
 
-  createAccount() {
+  /*createAccount() {
     this.navCtrl.setRoot('register-page');
-  }
+  }*/
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');

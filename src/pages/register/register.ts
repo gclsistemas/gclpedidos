@@ -32,6 +32,10 @@ export class RegisterPage {
               public webservice: WebserviceProvider) {
   }
 
+  backLogin() {
+    this.navCtrl.setRoot('login-page');
+  }
+
   ionViewDidLoad() {
     this.showLoading();
     console.log('ionViewDidLoad RegisterPage');
