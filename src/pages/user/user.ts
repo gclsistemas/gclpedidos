@@ -34,7 +34,7 @@ export class UserPage {
     if (!obj.password) {
       delete obj.password;
     }
-    this.webservice.put('user/' + this.singleton.user.id, obj)
+    this.webservice.put('/user/' + this.singleton.user.id, obj)
       .then((res: any) => {
         console.log(res);
         this.helper.presentToast(res.message);

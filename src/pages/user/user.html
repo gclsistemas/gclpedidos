@@ -9,19 +9,26 @@
     </ion-title>-->
     <ion-title>
       <img src="https://gclsistemas.com.ar/img/logo.png" img-logo>
-      <div>Pedidos de clientes</div>
+      <!--<div>Pedidos de clientes</div>
       <div small>
         <ion-icon name="person"></ion-icon>
         Mis datos
-      </div>
+      </div>-->
+      <ion-icon name="person"></ion-icon> Mis datos
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <form (ngSubmit)="updateUser()">
-    <ion-item>
+    <!--<ion-item>
       <ion-input type="text" name="fullname" placeholder="fullname" [(ngModel)]="singleton.user.fullname" required></ion-input>
+    </ion-item>-->
+    <ion-item>
+      <ion-input type="text" name="apellido" placeholder="apellido" [(ngModel)]="singleton.user.apellido" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" name="nombre" placeholder="nombre" [(ngModel)]="singleton.user.nombre" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-input type="email" name="email" placeholder="email" [(ngModel)]="singleton.user.email" required></ion-input>

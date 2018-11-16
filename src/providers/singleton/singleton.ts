@@ -11,6 +11,8 @@ export class SingletonProvider {
 
   public user = {
     id: 0,
+    apellido: '',
+    nombre: '',
     email: '',
     fullname: '',
     empresa_id: 0,

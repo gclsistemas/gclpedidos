@@ -10,8 +10,9 @@
     <ion-title>
       <img src="../../assets/imgs/logo.png" img-logo/>
       <ion-label>
-        Pedidos de clientes
-        <div small><ion-icon name="list-box"></ion-icon> {{pageTitle}}</div>
+        <!--Pedidos de clientes-->
+        <!--<div small><ion-icon name="list-box"></ion-icon> {{pageTitle}}</div>-->
+        <ion-icon name="list-box"></ion-icon> {{pageTitle}}
       </ion-label>
     </ion-title>
     <ion-buttons end>
@@ -49,7 +50,7 @@
           <ion-label item-content text-wrap class="{{pedido.cancelado ? 'cancelado_red' : (pedido.pagado ? 'pagado_gray' : (pedido.embalada ? 'embalada_gray' :
           (pedido.enviado ? 'enviado_green' : 'sin_procesar')))}}">
             <p>Nro: {{pedido.id}}<span float-right>Fecha: {{pedido.fecha | date: 'dd/MM/yyyy'}}</span></p>
-            <p>Cliente: {{pedido.cliente}}</p>
+            <!--<p>Cliente: {{pedido.cliente}}</p>-->
             <p>Cantidad: {{pedido.cantidad}}<span float-right><b>${{pedido.importeTotal}}</b></span></p>
             <p>
               {{(

@@ -66,6 +66,23 @@ export class WebserviceProvider {
 
   /**
    *
+   * @param empresa_id Id de la empresa asignada al cliente logueado.
+   */
+  download_productos_empresa(empresa_id: number) {
+    console.log('WebserviceProvider - download_productos_empresa');
+    return new Promise(resolve => {
+      this.http.get(this.urlWeb + '/download/productos/' + empresa_id, {headers: this.httpHeaders}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });
+    });
+  }
+
+  /**
+   *
    * @param {number} user_id Id de usuario logueado.
    * @returns {Promise<any>}
    */
@@ -73,6 +90,19 @@ export class WebserviceProvider {
     console.log('WebserviceProvider - download pedidos');
     return new Promise(resolve => {
       this.http.get(this.urlWeb + '/download/pedidos/' + user_id, {headers: this.httpHeaders}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });
+    });
+  }
+
+  download_pedidos_cliente(cliente_id: number) {
+    console.log('WebserviceProvider - download pedidos');
+    return new Promise(resolve => {
+      this.http.get(this.urlWeb + '/download/pedidos/cliente/' + cliente_id, {headers: this.httpHeaders}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);

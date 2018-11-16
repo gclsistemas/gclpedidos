@@ -184,7 +184,8 @@ export class ListPage {
 
   private getListado() {
     this.showLoading();
-    this.webservice.download_pedidos(this.singleton.user.id)
+    // this.webservice.download_pedidos(this.singleton.user.id)
+    this.webservice.download_pedidos_cliente(this.singleton.user.id)
       .then((res: any) => {
         console.log(res);
         if (res.message) {

@@ -16,7 +16,7 @@ export class HomePage {
 
   pageTitle: string = '';
   loading: Loading;
-  clientes: any[] = [];
+  // clientes: any[] = [];
   datos: any = [];
   hiddenLstPedido = true;
   hiddenLstProductos = false;
@@ -27,7 +27,7 @@ export class HomePage {
     canal: 5,
     cliente_id: 0,
     productos: [],
-    user_id: 0
+    // user_id: 0
   };
 
   constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider,
@@ -78,7 +78,7 @@ export class HomePage {
     this.sumoImportes();
   }
 
-  findClientes(ev: any) {
+  /*findClientes(ev: any) {
     // Set val to the value of the searchbar
     let val = ev.target.value;
 
@@ -91,7 +91,7 @@ export class HomePage {
       // Reset items back to all of the items
       this.clientes = this.datos.clientes;
     }
-  }
+  }*/
 
   findProductos(ev: any) {
     // Reset items back to all of the items
@@ -121,7 +121,8 @@ export class HomePage {
     console.log('ionViewDidLoad HomePage');
     this.showLoading();
     this.pageTitle = this.navParams.get('title');
-    this.webservice.download(this.singleton.user.id)
+    // this.webservice.download(this.singleton.user.id)
+    this.webservice.download_productos_empresa(this.singleton.user.empresa_id)
       .then((res: any) => {
         console.log(res);
         if (res.message) {
@@ -129,13 +130,13 @@ export class HomePage {
           this.helper.presentToast(res.message);
         } else {
           this.datos = res;
-          for (let i = 0; i < this.datos.productos.length; i++) {
+          /*for (let i = 0; i < this.datos.productos.length; i++) {
             this.datos.productos[i].cantidad = null;
             this.datos.productos[i].seleccionado = false;
-          }
-          this.clientes = this.datos.clientes;
+          }*/
+          // this.clientes = this.datos.clientes;
           this.productos = this.datos.productos;
-          this.pedido.user_id = this.singleton.user.id;
+          // this.pedido.user_id = this.singleton.user.id;
         }
       })
       .catch(err => {
@@ -150,10 +151,10 @@ export class HomePage {
   }
 
   savePedido() {
-    if (this.pedido.cliente_id === 0) {
+    /*if (this.pedido.cliente_id === 0) {
       this.helper.presentToast('Seleccione el cliente');
       return false;
-    }
+    }*/
     if (this.pedido.productos.length === 0) {
       this.helper.presentToast('Seleccione productos del cliente');
       this.hiddenLstPedido = true;
@@ -161,7 +162,8 @@ export class HomePage {
       return false;
     }
     this.showLoading();
-    this.pedido.user_id = this.singleton.user.id;
+    // this.pedido.user_id = this.singleton.user.id;
+    this.pedido.cliente_id = this.singleton.user.id;
     this.webservice.post('/pedido/create', this.pedido)
       .then((res: any) => {
         // console.log('GCL - Imprimo objeto res del savePedido');

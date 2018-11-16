@@ -6,8 +6,9 @@
     <ion-title>
       <img src="../../assets/imgs/logo.png" img-logo/>
       <ion-label>
-        Pedidos de clientes
-        <div small>{{pageTitle}}...<ion-icon name="create"></ion-icon></div>
+        <!--Pedidos de clientes-->
+        <!--<div small>{{pageTitle}}...<ion-icon name="create"></ion-icon></div>-->
+        {{pageTitle}}...<ion-icon name="create"></ion-icon>
       </ion-label>
     </ion-title>
   </ion-navbar>
@@ -44,14 +45,14 @@
   </ion-item>
 
   <ion-item [hidden]="hiddenLstPedido" no-padding>
-    <ion-item no-padding>
+    <!--<ion-item no-padding>
       <ion-searchbar (ionInput)="findClientes($event)" placeholder="Buscar cliente/s..."></ion-searchbar>
     </ion-item>
     <ion-item no-padding>
       <ion-select name="cliente_id" [(ngModel)]="pedido.cliente_id" placeholder="Seleccione cliente.">
         <ion-option *ngFor="let cliente of clientes" value="{{cliente.id}}">{{ cliente.apellido }} {{ cliente.nombre }}</ion-option>
       </ion-select>
-    </ion-item>
+    </ion-item>-->
     <ion-item no-padding>
       <ion-list>
         <ion-item no-padding *ngFor="let producto of pedido.productos; let i = index">
