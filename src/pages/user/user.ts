@@ -20,12 +20,15 @@ import { WebserviceProvider } from '../../providers/webservice/webservice';
 })
 export class UserPage {
 
+  pageTitle: '';
+
   constructor(public helper: HelperProvider, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider, public webservice: WebserviceProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPage');
-    console.log(this.singleton.user);
+    // console.log(this.singleton.user);
+    this.pageTitle = this.navParams.get('title');
   }
 
   updateUser() {

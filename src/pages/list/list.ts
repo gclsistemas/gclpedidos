@@ -99,8 +99,8 @@ export class ListPage {
         { text: (this.pedidos[index].cancelado ? 'Cancelado el ' + moment(this.pedidos[index].fechaCancelado).format('DD/MM/YYYY') :
             (this.pedidos[index].pagado ? 'Pagado: ' + moment(this.pedidos[index].fechaPago).format('DD/MM/YYYY') :
               (this.pedidos[index].embalada ? 'Embalada el ' + moment(this.pedidos[index].fechaEmbalada).format('DD/MM/YYYY') :
-                (this.pedidos[index].enviado ? 'Enviado el ' + moment(this.pedidos[index].fechaEnviado).format('DD/MM/YYYY') :
-    'Sin procesar')))), style: 'subheader' },
+                (this.pedidos[index].enviado ? 'Enviado el ' + moment(this.pedidos[index].fechaEnviado).format('DD/MM/YYYY') : 'Sin procesar')))), style: 'subheader'
+        },
       ],
       styles: {
         header: {
@@ -109,7 +109,7 @@ export class ListPage {
         },
         subheader: {
           fontSize: 14,
-          bold: true,
+          bold: false,
           margin: [0, 15, 0, 0]
         },
         story: {
