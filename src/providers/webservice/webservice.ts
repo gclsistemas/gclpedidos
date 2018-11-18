@@ -13,8 +13,8 @@ export class WebserviceProvider {
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
   private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
-    //'Accept': 'application/json'
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+    'Accept': 'application/json'
   });
 
   constructor(public http: HttpClient) {
