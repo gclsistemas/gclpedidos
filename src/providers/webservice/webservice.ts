@@ -11,12 +11,22 @@ import { Injectable } from '@angular/core';
 export class WebserviceProvider {
 
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
+  /*private httpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Headers': 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization',
+    // 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    // 'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+    // 'Access-Control-Allow-Headers': 'Content-Type, X-Amz-Date, Authorization, X-Api-Key, Origin, Accept, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers': 'Origin, Accept, Access-Control-*, Content-Type, Access-Control-Request-*',
+    // 'Accept': 'application/json'
+  });*/
   private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', //POST, GET, OPTIONS, PUT
-    // 'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-    // 'Accept': 'application/json'
+    // 'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, Authorization, Content-Length, X-Requested-With, Access-Control-*',
+    // 'Access-Control-Allow-Headers': 'X-PINGOTHER, pingpong',
+    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
   });
 
   constructor(public http: HttpClient) {
