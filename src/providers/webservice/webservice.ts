@@ -1,5 +1,5 @@
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 /*
   Generated class for the WebserviceProvider provider.
@@ -21,12 +21,25 @@ export class WebserviceProvider {
     'Access-Control-Allow-Headers': 'Origin, Accept, Access-Control-*, Content-Type, Access-Control-Request-*',
     // 'Accept': 'application/json'
   });*/
-  private httpHeaders = new HttpHeaders({
+  /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     // 'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, Authorization, Content-Length, X-Requested-With, Access-Control-*',
     // 'Access-Control-Allow-Headers': 'X-PINGOTHER, pingpong',
     // 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
+    'Access-Control-Allow-Headers': '*'
+  });*/
+  /*private httpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
+  });*/
+  private httpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Methods': '*',
+    'Access-Control-Allow-Headers': '*'
   });
 
   constructor(public http: HttpClient) {
