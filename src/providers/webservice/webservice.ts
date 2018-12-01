@@ -13,13 +13,14 @@ export class WebserviceProvider {
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
   /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Headers': 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization',
-    // 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    // 'Access-Control-Allow-Headers': 'Accept, Access-Control-*, Authorization, Content-Type, Origin, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS, POST, PUT',
+    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     // 'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
     // 'Access-Control-Allow-Headers': 'Content-Type, X-Amz-Date, Authorization, X-Api-Key, Origin, Accept, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Headers': 'Origin, Accept, Access-Control-*, Content-Type, Access-Control-Request-*',
-    // 'Accept': 'application/json'
+    // 'Access-Control-Allow-Headers': 'Origin, Accept, Access-Control-*, Content-Type, Access-Control-Request-*',
+    'Accept': 'application/json'
   });*/
   /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
@@ -29,18 +30,18 @@ export class WebserviceProvider {
     'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
     'Access-Control-Allow-Headers': '*'
   });*/
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
-    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-  });*/
   private httpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Credentials': 'true',
+    'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
+    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization'
+  });
+  /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Allow-Methods': '*',
     'Access-Control-Allow-Headers': '*'
-  });
+  });*/
 
   constructor(public http: HttpClient) {
     console.log('Hello WebserviceProvider Provider');
