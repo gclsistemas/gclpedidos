@@ -30,18 +30,26 @@ export class WebserviceProvider {
     'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
     'Access-Control-Allow-Headers': '*'
   });*/
-  private httpHeaders = new HttpHeaders({
+  /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': 'GET,HEAD,OPTIONS,POST,PUT',
-    'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization'
-  });
+    'Access-Control-Allow-Methods': 'GET, POST, PUT', //,HEAD,OPTIONS
+    //'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Origin, Accept, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin'
+  });*/
   /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': 'true',
     'Access-Control-Allow-Methods': '*',
     'Access-Control-Allow-Headers': '*'
   });*/
+
+  private httpHeaders = new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+    // 'Access-Control-Allow-Headers': 'Accept, Content-Type',
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  });
 
   constructor(public http: HttpClient) {
     console.log('Hello WebserviceProvider Provider');

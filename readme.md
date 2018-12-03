@@ -1,5 +1,11 @@
 GCL PEDIDOS
 
+<p>
+Configurar cors
+06 Tutorial de Angular: CORS solución en el cliente de un app de Angular
+https://www.youtube.com/watch?v=zq48aSVEwbQ
+</p>
+
 Webservice functions:
 <p>
 download_productos_empresa(empresa_id: number) retorna array de productos con el siguiente formato:<br>
