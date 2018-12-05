@@ -11,45 +11,13 @@ import {Injectable} from '@angular/core';
 export class WebserviceProvider {
 
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Headers': 'Accept, Access-Control-*, Authorization, Content-Type, Origin, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS, POST, PUT',
-    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    // 'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers'
-    // 'Access-Control-Allow-Headers': 'Content-Type, X-Amz-Date, Authorization, X-Api-Key, Origin, Accept, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin',
-    // 'Access-Control-Allow-Headers': 'Origin, Accept, Access-Control-*, Content-Type, Access-Control-Request-*',
-    'Accept': 'application/json'
-  });*/
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    // 'Access-Control-Allow-Headers': 'X-PINGOTHER, Content-Type, Authorization, Content-Length, X-Requested-With, Access-Control-*',
-    // 'Access-Control-Allow-Headers': 'X-PINGOTHER, pingpong',
-    // 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS, POST, PUT',
-    'Access-Control-Allow-Headers': '*'
-  });*/
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT', //,HEAD,OPTIONS
-    //'Access-Control-Allow-Headers': 'Access-Control-Allow-Headers, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization',
-    'Access-Control-Allow-Headers': 'Content-Type, Authorization, Origin, Accept, Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin'
-  });*/
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Access-Control-Allow-Methods': '*',
-    'Access-Control-Allow-Headers': '*'
-  });*/
-
   private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
-    // 'Access-Control-Allow-Headers': 'Accept, Content-Type, Access-Control-Allow-Methods, Access-Control-Allow-Origin',
-    // 'Access-Control-Allow-Credentials': 'true'
-    // 'Accept': 'application/json, text/plain, */*',
-    // 'Content-Type': 'application/json'
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    //'Access-Control-Allow-Headers': 'Authorization, Access-Control-Allow-Origin',
+    'Access-Control-Allow-Headers': 'access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,content-type',
+    'Accept': 'application/json, text/plain, */*',
+    'Content-Type': 'application/json'
   });
 
   constructor(public http: HttpClient) {
@@ -64,20 +32,20 @@ export class WebserviceProvider {
   checkLogin(obj: any) {
     console.log('WebserviceProvider - checkLogin');
     return new Promise(resolve => {
-      /*this.http.post(this.urlWeb + '/checklogin', obj, {headers: this.httpHeaders}).subscribe(response => {
-        resolve(response);
-      }, err => {
-        console.log(err);
-        // this.helper.presentToast(err);
-        resolve(err);
-      });*/
-      this.http.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj}).subscribe(response => {
+      this.http.post(this.urlWeb + '/checklogin', obj, {headers: this.httpHeaders}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);
         // this.helper.presentToast(err);
         resolve(err);
       });
+      /*this.http.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj}).subscribe(response => {
+        resolve(response);
+      }, err => {
+        console.log(err);
+        // this.helper.presentToast(err);
+        resolve(err);
+      });*/
     });
   }
 
