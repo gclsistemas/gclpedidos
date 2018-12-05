@@ -45,10 +45,11 @@ export class WebserviceProvider {
 
   private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-    // 'Access-Control-Allow-Headers': 'Accept, Content-Type',
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
+    // 'Access-Control-Allow-Headers': 'Accept, Content-Type, Access-Control-Allow-Methods, Access-Control-Allow-Origin',
+    // 'Access-Control-Allow-Credentials': 'true'
+    // 'Accept': 'application/json, text/plain, */*',
+    // 'Content-Type': 'application/json'
   });
 
   constructor(public http: HttpClient) {
