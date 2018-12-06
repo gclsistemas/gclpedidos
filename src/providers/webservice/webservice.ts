@@ -15,7 +15,7 @@ export class WebserviceProvider {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
     //'Access-Control-Allow-Headers': 'Authorization, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Headers': 'access-control-allow-headers,access-control-allow-methods,access-control-allow-origin,content-type',
+    'Access-Control-Allow-Headers': '*', //Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Content-Type
     'Accept': 'application/json, text/plain, */*',
     'Content-Type': 'application/json'
   });
