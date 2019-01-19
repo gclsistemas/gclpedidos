@@ -11,14 +11,15 @@ import {Injectable} from '@angular/core';
 export class WebserviceProvider {
 
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
-  private httpHeaders = new HttpHeaders({
+  /*private httpHeaders = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, OPTIONS, POST, PUT',
     //'Access-Control-Allow-Headers': 'Authorization, Access-Control-Allow-Origin',
     'Access-Control-Allow-Headers': '*', //Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Content-Type
-    'Accept': 'application/json, text/plain, */*',
+    'Accept': 'application/json, text/plain, *!/!*',
     'Content-Type': 'application/json'
-  });
+  });*/
+  private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(public http: HttpClient) {
     console.log('Hello WebserviceProvider Provider');
