@@ -32,20 +32,20 @@ export class WebserviceProvider {
   checkLogin(obj: any) {
     console.log('WebserviceProvider - checkLogin');
     return new Promise(resolve => {
-      this.http.post(this.urlWeb + '/checklogin', obj, {headers: this.httpHeaders}).subscribe(response => {
+      // this.http.post(this.urlWeb + '/checklogin', obj, {headers: this.httpHeaders}).subscribe(response => {
+      //   resolve(response);
+      // }, err => {
+      //   console.log(err);
+      //   // this.helper.presentToast(err);
+      //   resolve(err);
+      // });
+      this.http.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);
         // this.helper.presentToast(err);
         resolve(err);
       });
-      /*this.http.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj}).subscribe(response => {
-        resolve(response);
-      }, err => {
-        console.log(err);
-        // this.helper.presentToast(err);
-        resolve(err);
-      });*/
     });
   }
 

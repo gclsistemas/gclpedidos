@@ -48,7 +48,7 @@ export class LoginPage {
     this.showLoading();
     this.webservice.checkLogin(this.loginInfo)
       .then((res: any) => {
-        // console.log(res);
+        console.log(res);
         // alert(JSON.stringify(res));
         if (res.user) {
           this.singleton.user = res.user;
