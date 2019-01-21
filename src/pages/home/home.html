@@ -15,27 +15,24 @@
 </ion-header>
 
 <ion-content padding>
-  <!--<h3>Ionic Menu Starter</h3>
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-  <button ion-button secondary menuToggle>Toggle Menu</button>-->
-
   <ion-item no-padding>
     <ion-toggle [checked]="hiddenLstProductos" (ionChange)="verPedido($event)" item-start></ion-toggle>
     <ion-label>{{pedido.productos.length?'('+pedido.productos.length + ' producto' + (pedido.productos.length===1?' seleccionado':'s seleccionados')+')':'Sin productos seleccionados'}}</ion-label>
   </ion-item>
 
   <ion-item [hidden]="hiddenLstProductos" no-padding>
-    <ion-item no-padding>
+    <ion-searchbar (ionInput)="findProductos($event)" placeholder="Buscar productos..."></ion-searchbar>
+  </ion-item>
+  <ion-item [hidden]="hiddenLstProductos" no-padding>
+    <!--<ion-item no-padding>
       <ion-searchbar (ionInput)="findProductos($event)" placeholder="Buscar productos..."></ion-searchbar>
-    </ion-item>
+    </ion-item>-->
     <ion-list>
       <ion-item no-padding *ngFor="let producto of productos; let i = index">
         <ion-toggle [checked]="producto.seleccionado" (ionChange)="addProductoToPedido(i, $event)" item-start></ion-toggle>
         <ion-label item-content text-wrap>
           <p><b>(COD-{{producto.id}}-{{producto.presentacion_id}})</b> {{producto.nombre}} x {{producto.presentacion}} marca {{producto.marca}}</p>
-          <p><span float-right>${{producto.precio}}</span></p>
+          <p><span float-right>{{producto.precio | currency}}</span></p>
           <ion-item no-padding>
             <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad" placeholder="Cantidad"></ion-input>
           </ion-item>
@@ -59,7 +56,7 @@
           <ion-toggle [checked]="true" (ionChange)="delProductoPedido(i, $event)" item-start></ion-toggle>
           <ion-label item-content text-wrap>
             <p><b>(COD-{{producto.articulo_id}}-{{producto.presentacion_id}})</b> {{producto.producto}}</p>
-            <p>${{producto.precio}}</p>
+            <p>{{producto.precio | currency}}</p>
             <ion-item no-padding>
               <ion-input type="number" name="cantidad" min="1" [(ngModel)]="producto.cantidad" (ionChange)="sumoImportes()"></ion-input>
             </ion-item>

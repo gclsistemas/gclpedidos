@@ -50,7 +50,8 @@
           <ion-label item-content text-wrap class="{{pedido.cancelado ? 'cancelado_red' : (pedido.pagado ? 'pagado_gray' : (pedido.embalada ? 'embalada_gray' :
           (pedido.enviado ? 'enviado_green' : 'sin_procesar')))}}">
             <p>Nro: {{pedido.id}}<span float-right>Fecha: {{pedido.fecha | date: 'dd/MM/yyyy'}}</span></p>
-            <p>Cantidad: {{getCantidad(pedido.orden_venta_detalle)}}<span float-right><b>{{getTotal(pedido.orden_venta_detalle) | currency}}</b></span></p>
+            <!--<p>Cliente: {{pedido.cliente}}</p>-->
+            <p>Cantidad: {{pedido.cantidad}}<span float-right><b>{{pedido.importeTotal | currency}}</b></span></p>
             <p>
               {{(
               pedido.cancelado ? 'Cancelado el ' + (pedido.fechaCancelado | date: 'dd/MM/yyyy H:mm:ss') :
