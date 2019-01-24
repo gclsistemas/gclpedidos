@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-// import {Base64} from '@ionic-native/base64';
+import {Base64} from '@ionic-native/base64';
 import {CurrencyPipe} from "@angular/common";
 
 import { MyApp } from './app.component';
@@ -29,7 +29,7 @@ import { WebserviceProvider } from '../providers/webservice/webservice';
     MyApp,
   ],
   providers: [
-    // Base64,
+    Base64,
     CurrencyPipe,
     File,
     FileOpener,
