@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {IonicPage, Loading, LoadingController, MenuController, NavController, NavParams} from 'ionic-angular';
-import { HelperProvider } from '../../providers/helper/helper';
-import { SingletonProvider } from '../../providers/singleton/singleton';
-import { WebserviceProvider } from '../../providers/webservice/webservice';
+import {HelperProvider} from '../../providers/helper/helper';
+import {SingletonProvider} from '../../providers/singleton/singleton';
+import {WebserviceProvider} from '../../providers/webservice/webservice';
+// import {UidOriginal} from '@ionic-native/uid';
+// import {AndroidPermissionsOriginal} from '@ionic-native/android-permissions';
 
 /**
  * Generated class for the LoginPage page.
@@ -23,12 +25,36 @@ export class LoginPage {
   loading: Loading;
   loginInfo = {
     email: '',
-    password: ''
+    password: '',
+    imei: ''
   };
 
-  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public menuCtrl: MenuController, public navCtrl: NavController, public navParams: NavParams, public singleton: SingletonProvider,
-              public webservice: WebserviceProvider) {
+  //private androidPermissions: AndroidPermissionsOriginal, private uid: UidOriginal,
+  constructor(public helper: HelperProvider, private loadingCtrl: LoadingController, public menuCtrl: MenuController, public navCtrl: NavController,
+              public navParams: NavParams, public singleton: SingletonProvider, public webservice: WebserviceProvider) {
   }
+
+  // async getImei() {
+  //   //https://ionicframework.com/docs/native/uid/
+  //   const { hasPermission } = await this.androidPermissions.checkPermission(
+  //     this.androidPermissions.PERMISSION.READ_PHONE_STATE
+  //   );
+  //
+  //   if (!hasPermission) {
+  //     const result = await this.androidPermissions.requestPermission(
+  //       this.androidPermissions.PERMISSION.READ_PHONE_STATE
+  //     );
+  //
+  //     if (!result.hasPermission) {
+  //       throw new Error('Permissions required');
+  //     }
+  //
+  //     // ok, a user gave us permission, we can get him identifiers after restart app
+  //     return;
+  //   }
+  //
+  //   return this.uid.IMEI;
+  // }
 
   /*createAccount() {
     this.navCtrl.setRoot('register-page');
@@ -54,17 +80,49 @@ export class LoginPage {
           this.singleton.user = res.user;
           localStorage.setItem('user', this.loginInfo.email);
           localStorage.setItem('pwd', this.loginInfo.password);
+          this.loading.dismiss();
           this.navCtrl.setRoot('home-page', {title: 'Nuevo pedido'});
         } else {
+          this.loading.dismiss();
           console.log(res.message);
           this.helper.presentToast(res.message);
         }
       })
       .catch(err => {
+        this.loading.dismiss();
         console.log(err);
         this.helper.presentToast(err);
       });
-    this.loading.dismiss();
+
+    // this.getImei().then((imei: string) => {
+    //   this.loginInfo.imei = imei;
+    //   console.log(this.loginInfo);
+    //   this.webservice.checkLogin(this.loginInfo)
+    //     .then((res: any) => {
+    //       console.log(res);
+    //       // alert(JSON.stringify(res));
+    //       if (res.user) {
+    //         this.singleton.user = res.user;
+    //         localStorage.setItem('user', this.loginInfo.email);
+    //         localStorage.setItem('pwd', this.loginInfo.password);
+    //         this.loading.dismiss();
+    //         this.navCtrl.setRoot('home-page', {title: 'Nuevo pedido'});
+    //       } else {
+    //         this.loading.dismiss();
+    //         console.log(res.message);
+    //         this.helper.presentToast(res.message);
+    //       }
+    //     })
+    //     .catch(err => {
+    //       this.loading.dismiss();
+    //       console.log(err);
+    //       this.helper.presentToast(err);
+    //     });
+    // }, err => {
+    //   this.loading.dismiss();
+    //   console.log(err);
+    //   this.helper.presentToast(err);
+    // });
   }
 
   /*onPageDidEnter() {

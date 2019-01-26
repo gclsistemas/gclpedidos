@@ -11,14 +11,6 @@ import {Injectable} from '@angular/core';
 export class WebserviceProvider {
 
   private urlWeb: string = 'https://gclsistemas.com.ar/pedidosclientes';
-  /*private httpHeaders = new HttpHeaders({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, OPTIONS, POST, PUT',
-    //'Access-Control-Allow-Headers': 'Authorization, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Headers': '*', //Access-Control-Allow-Headers, Access-Control-Allow-Methods, Access-Control-Allow-Origin, Content-Type
-    'Accept': 'application/json, text/plain, *!/!*',
-    'Content-Type': 'application/json'
-  });*/
   private httpHeaders = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
 
   constructor(public http: HttpClient) {
@@ -33,18 +25,10 @@ export class WebserviceProvider {
   checkLogin(obj: any) {
     console.log('WebserviceProvider - checkLogin');
     return new Promise(resolve => {
-      // this.http.post(this.urlWeb + '/checklogin', obj, {headers: this.httpHeaders}).subscribe(response => {
-      //   resolve(response);
-      // }, err => {
-      //   console.log(err);
-      //   // this.helper.presentToast(err);
-      //   resolve(err);
-      // });
       this.http.get(this.urlWeb + '/checklogin', {headers: this.httpHeaders, params: obj}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
@@ -62,7 +46,6 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
@@ -79,7 +62,6 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
@@ -97,12 +79,16 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
   }
 
+  /**
+   *
+   * @param {number} cliente_id Id de cliente
+   * @returns {Promise<any>}
+   */
   download_pedidos_cliente(cliente_id: number) {
     console.log('WebserviceProvider - download pedidos');
     return new Promise(resolve => {
@@ -110,7 +96,6 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
@@ -129,7 +114,6 @@ export class WebserviceProvider {
           resolve(response);
         }, err => {
           console.log(err);
-          // this.helper.presentToast(err);
           resolve(err);
         });
       });
@@ -157,7 +141,6 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
@@ -175,12 +158,16 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
   }
 
+  /**
+   *
+   * @param {any} obj
+   * @returns {Promise<any>}
+   */
   register(obj: any) {
     console.log('WebserviceProvider - register');
     return new Promise(resolve => {
@@ -188,14 +175,12 @@ export class WebserviceProvider {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });*/
       this.http.get(this.urlWeb + '/register', {headers: this.httpHeaders, params: obj}).subscribe(response => {
         resolve(response);
       }, err => {
         console.log(err);
-        // this.helper.presentToast(err);
         resolve(err);
       });
     });
